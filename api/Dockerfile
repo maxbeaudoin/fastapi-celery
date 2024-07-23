@@ -5,7 +5,8 @@ FROM python:3.11
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY ./src /app
+COPY requirements.txt /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -19,5 +20,5 @@ ENV VARIABLE_NAME="app"
 ENV HOST="0.0.0.0"
 ENV PORT=8000
 
-# Run app.py when the container launches
+# Run main.py when the container launches
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

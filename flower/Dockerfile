@@ -7,7 +7,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . /app
+COPY ./src /app
+COPY requirements.txt /app
 
 EXPOSE 5555
 
