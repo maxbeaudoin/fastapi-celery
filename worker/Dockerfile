@@ -11,4 +11,3 @@ COPY ./src /app
 COPY requirements.txt /app
 
 CMD celery -A tasks worker --loglevel=info --pool=solo
-
