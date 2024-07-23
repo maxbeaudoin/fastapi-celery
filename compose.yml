@@ -1,0 +1,55 @@
+version: '3'
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672" # Management UI
+      - "5672:5672"   # Default RabbitMQ
+    networks:
+      - internal-net
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - internal-net
+
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rabbitmq
+      - redis
+    env_file: 
+      - ./.env
+    networks:
+      - internal-net
+
+  worker:
+    build: ./worker
+    depends_on:
+      - rabbitmq
+      - redis
+    env_file: 
+      - ./.env
+    networks:
+      - internal-net
+
+  flower:
+    build: ./flower
+    ports:
+      - "5555:5555" # Flower UI
+    depends_on:
+      - rabbitmq
+      - redis
+    env_file: 
+      - ./.env
+    networks:
+      - internal-net
+
+networks:
+  internal-net:
+    driver: bridge
