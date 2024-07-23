@@ -17,7 +17,7 @@ These instructions will guide you through setting up the project locally for dev
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/fastapi-celery.git
+git clone https://github.com/maxbeaudoin/fastapi-celery.git
 cd fastapi-celery
 ```
 
