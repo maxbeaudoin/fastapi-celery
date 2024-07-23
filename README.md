@@ -21,8 +21,15 @@ git clone https://github.com/yourusername/fastapi-celery.git
 cd fastapi-celery
 ```
 
-Next, start the application using Docker Compose:
+Before starting the application, ensure you run the initialization script:
 
+```bash
+./init.sh
+```
+
+This script prepares the necessary environment for the application to run smoothly.
+
+Next, start the application using Docker Compose:
 
 ```bash
 docker-compose up --build
@@ -37,6 +44,14 @@ With the application running, you can access:
 - **FastAPI** application at http://localhost:8000 for API interactions.
 - **RabbitMQ** Management UI at http://localhost:15672 to monitor message queues.
 - **Flower** for Celery monitoring at http://localhost:5555.
+
+To work within a specific service environment, use the `activate.sh` script with the service name as an argument. This sets up the environment variables and any other dependencies specific to that service. For example:
+
+```bash
+source ./activate.sh api
+```
+
+Replace `api` with `flower` or `worker` to activate the environment for those services.
 
 ### License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
